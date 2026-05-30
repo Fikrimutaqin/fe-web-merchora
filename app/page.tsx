@@ -2,14 +2,14 @@
 
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
-import Header from "@/components/Layout/header";
-import Footer from "@/components/Layout/footer";
-import PromoSlider from "@/components/SliderPromo/slider-promo";
-import CardProduct from "@/components/CardProduct/card-product";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
+import PromoSlider from "@/components/slider-promo/slider-promo";
+import CardProduct from "@/components/card-product/card-product";
 import Swipeable from "@/components/ui/swipeable";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import CardTestimony, { TestimonyProps } from "@/components/CardTestimony/card-testimony";
+import CardTestimony, { TestimonyProps } from "@/components/card-testimony/card-testimony";
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0)
