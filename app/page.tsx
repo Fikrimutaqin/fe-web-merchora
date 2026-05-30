@@ -308,34 +308,36 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bg-black w-full rounded-2xl p-10">
-            <div className="flex flex-row justify-between items-center">
-              <div className="w-1/2 text-white">
+          <div className="bg-black w-full rounded-2xl lg:p-10 p-7">
+            <div className="flex flex-col justify-center lg:flex-row lg:justify-between items-center gap-5">
+              <div className="w-full lg:w-1/2 text-white lg:order-1 order-2 flex flex-col justify-center items-center lg:justify-start lg:items-start">
                 <h1 className="text-3xl font-semibold">Reimagine your career in the AI era</h1>
                 <p className="mt-2 text-neutral-300 text-wrap">Future-proof your skills with Personal Plan. Get access to a variety of fresh content from real-world experts.</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-7 mt-4">
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
                   <div className="flex justify-start items-start gap-2">
                     <Check className="w-6 h-6" />
-                    <p className="text-base">AI-powered learning paths tailored to your goals</p>
+                    <p className="text-sm text-wrap">AI-powered learning </p>
                   </div>
                   <div className="flex justify-start items-start gap-2">
                     <Check className="w-6 h-6" />
-                    <p className="text-base">Prep for a certification</p>
+                    <p className="text-sm">Prep for a certification</p>
                   </div>
                   <div className="flex justify-start items-start gap-2">
                     <Check className="w-6 h-6" />
-                    <p className="text-base">Practice with AI coaching</p>
+                    <p className="text-sm">Practice with AI coaching</p>
                   </div>
                   <div className="flex justify-start items-start gap-2">
                     <Check className="w-6 h-6" />
-                    <p className="text-base">Advance your career</p>
+                    <p className="text-sm">Advance your career</p>
                   </div>
                 </div>
-                <Button className="bg-white text-black mt-10 rounded-lg py-6 px-10 font-semibold cursor-pointer hover:bg-white/80 transition-colors">
+
+                <Button className="bg-white text-black mt-10 rounded-lg py-6 lg:px-10 px-5 font-semibold cursor-pointer hover:bg-white/80 transition-colors">
                   Get started with Personal Plan
                 </Button>
               </div>
-              <div className="w-1/2 flex justify-center">
+              <div className="w-full lg:w-1/2 flex justify-center lg:order-2 order-1 mb-5 lg:mb-0">
                 <Image className="w-full h-full object-fill" src={"https://frontends.udemycdn.com/staticx/udemy/images/ai-career-banner/ai-career@1x.webp"} alt="image remaign your carreer" width={600} height={600} />
               </div>
             </div>
