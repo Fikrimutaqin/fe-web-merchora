@@ -3,11 +3,11 @@ import Link from "next/link";
 export default function Footer() {
     return (
         <div className="bg-white text-gray-600">
-            <div className="max-w-full mx-auto items-center justify-between gap-6 px-6 py-10">
+            <div className="max-full lg:max-w-7xl mx-auto items-start justify-between gap-6 px-6 py-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* Logo */}
-                    <div className="flex items-center gap-2 lg:pl-3">
-                        <a href="/" className="text-2xl font-bold ">
+                    <div className="flex flex-col items-start gap-2 lg:pl-3">
+                        <a href="/" className="text-2xl font-bold bg-linear-to-r from-linear-to-r from-[#148f59] via-[#0b8e4f] to-[#086539] text-transparent bg-clip-text">
                             Merchora
                         </a>
                     </div>
@@ -16,7 +16,7 @@ export default function Footer() {
                     <div>
                         <h4 className="text-lg font-semibold mb-4 ">About Merchora</h4>
                         <p className=" text-wrap">
-                            Multi-Merchant E-Commerce Platform Marketplace On the one hand, this platform is an all-in-one suite for shop owners (Admin/Merchant), and on the other hand, it is a seamless ecosystem for buyers (Users) for both physical and digital goods.
+                            Multi-Merchant E-Commerce Platform Marketplace On the one hand
                         </p>
                     </div>
 
