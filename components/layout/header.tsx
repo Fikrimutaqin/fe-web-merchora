@@ -16,6 +16,7 @@ import { Bell, User, ShoppingCart, Search, Menu } from "lucide-react";
 export default function Header() {
     const isMobile = useIsMobile()
     const [isOpen, setIsOpen] = useState(false)
+    const [isLogin, setIsLogin] = useState(false)
 
     const navLinks = [
         { href: '#promos', label: 'Product' },
@@ -32,9 +33,9 @@ export default function Header() {
     return (
         <>
             <nav className="border-b border-gray-200 sticky top-0 z-30 w-full bg-white/80 backdrop-blur-2xl">
-                <div className="mx-auto flex max-full lg:max-w-7xl items-center justify-between gap-6 px-6 py-4">
+                <div className="mx-auto flex max-full sm:w-full md:w-full lg:max-w-7xl items-center justify-between gap-6 px-4 md:px-6 lg:px-6 py-4">
                     {/* Logo */}
-                    <div className="shrink-0 flex gap-x-5 items-center justify-evenly w-1/4 ">
+                    <div className="shrink-0 flex gap-x-5 items-center justify-evenly md:w-1/3 lg:w-1/4">
                         {/* Logo */}
                         <div className="flex items-center gap-2">
                             <a href="/" className="text-2xl font-bold bg-linear-to-r from-linear-to-r from-[#148f59] via-[#0b8e4f] to-[#086539] text-transparent bg-clip-text">
@@ -48,7 +49,7 @@ export default function Header() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="rounded-lg border border-transparent px-3 py-1 text-gray-700 transition-all duration-300 ease-out hover:border-green-600 hover:text-gray-900"
+                                    className="rounded-lg border border-transparent px-3 py-1 text-gray-700 transition-all duration-300 ease-out hover:text-gray-900"
                                 >
                                     {link.label}
                                 </Link>
@@ -57,8 +58,8 @@ export default function Header() {
                     </div>
 
                     {/* Search Bar */}
-                    <div className="w-full mx-4 hidden lg:flex md:w-1/3">
-                        <div className="relative w-full">
+                    <div className="w-full mx-4 hidden lg:flex md:w-1/4 lg:w-1/3">
+                        <div className="relative w-full md:left-10">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400" />
                             <Input
                                 placeholder="Search Product..."
@@ -69,26 +70,49 @@ export default function Header() {
 
                     {/* Right Icons */}
                     <div className="flex items-center gap-6">
-                        {/* Cart */}
-                        <Link href="/cart" className="relative text-gray-700 hover:text-gray-900 hidden lg:flex">
-                            <ShoppingCart size={24} />
-                            <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
-                                2
-                            </span>
-                        </Link>
+                        {isLogin && (
+                            <>
+                                {/* Cart */}
+                                <Link href="/cart" className="relative text-gray-700 hover:text-gray-900 hidden lg:flex">
+                                    <ShoppingCart size={24} />
+                                    <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
+                                        2
+                                    </span>
+                                </Link>
 
-                        {/* Notifications */}
-                        <Link href="/notifications" className="relative text-gray-700 hover:text-gray-900 hidden lg:flex">
-                            <Bell size={24} />
-                            <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
-                                1
-                            </span>
-                        </Link>
+                                {/* Notifications */}
+                                <Link href="/notifications" className="relative text-gray-700 hover:text-gray-900 hidden lg:flex">
+                                    <Bell size={24} />
+                                    <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
+                                        1
+                                    </span>
+                                </Link>
 
-                        {/* Profile */}
-                        <Link href="/profile" className="h-8 w-8 p-1 items-center justify-center bg-linear-to-r from-linear-to-r from-[#148f59] via-[#0b8e4f] to-[#086539] text-white rounded-full hidden lg:flex">
-                            <User size={20} />
-                        </Link>
+                                {/* Profile */}
+                                <Link href="/profile" className="h-8 w-8 p-1 items-center justify-center bg-linear-to-r from-linear-to-r from-[#148f59] via-[#0b8e4f] to-[#086539] text-white rounded-full hidden lg:flex">
+                                    <User size={20} />
+                                </Link>
+                            </>
+                        )}
+
+                        {!isLogin && (
+                            <div className="hidden lg:flex gap-3">
+                                <Button
+                                    variant="default"
+                                    onClick={() => setIsLogin(true)}
+                                    className="rounded-lg font-medium bg-[#148f59] text-white hover:bg-[#148f59] hover:text-white transition-all duration-300 ease-out cursor-pointer"
+                                >
+                                    Login
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    onClick={() => setIsLogin(true)}
+                                    className="rounded-lg font-medium text-[#148f59] border-[#148f59] hover:bg-[#148f59] hover:text-white transition-all duration-300 ease-out cursor-pointer"
+                                >
+                                    Register
+                                </Button>
+                            </div>
+                        )}
 
                         {/* Humberger Icon */}
                         <Button onClick={() => setIsOpen(true)} variant={"outline"} className="rounded-lg border-2 lg:hidden">

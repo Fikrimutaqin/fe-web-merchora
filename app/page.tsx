@@ -1,11 +1,15 @@
 'use client'
 
 import { useCallback, useRef, useState } from "react";
+import Image from "next/image";
 import Header from "@/components/Layout/header";
 import Footer from "@/components/Layout/footer";
 import PromoSlider from "@/components/SliderPromo/slider-promo";
 import CardProduct from "@/components/CardProduct/card-product";
 import Swipeable from "@/components/ui/swipeable";
+import { Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import CardTestimony, { TestimonyProps } from "@/components/CardTestimony/card-testimony";
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -184,6 +188,81 @@ export default function Home() {
     },
   ];
 
+  const testimonies: (TestimonyProps & { id: string })[] = [
+    {
+      id: '1',
+      name: 'Fikri Mutaqin',
+      role: 'Frontend Developer',
+      avatarUrl: 'https://i.pravatar.cc/150?img=1',
+      rating: 5,
+      comment: 'Platform ini benar-benar mengubah cara saya belajar. Materi yang disajikan sangat terstruktur dan mudah dipahami bahkan untuk pemula sekalipun.',
+      date: '12 Mei 2026',
+    },
+    {
+      id: '2',
+      name: 'Sari Dewi',
+      role: 'UI/UX Designer',
+      avatarUrl: 'https://i.pravatar.cc/150?img=5',
+      rating: 5,
+      comment: 'Instrukturnya sangat responsif dan selalu membantu ketika saya kesulitan. Kelas desainnya sangat relevan dengan kebutuhan industri saat ini.',
+      date: '3 Mei 2026',
+    },
+    {
+      id: '3',
+      name: 'Budi Santoso',
+      role: 'Backend Engineer',
+      avatarUrl: 'https://i.pravatar.cc/150?img=3',
+      rating: 4,
+      comment: 'Konten kursusnya sangat lengkap dan up-to-date. Saya berhasil mendapatkan pekerjaan baru setelah menyelesaikan kursus di sini.',
+      date: '28 April 2026',
+    },
+    {
+      id: '4',
+      name: 'Anisa Rahma',
+      role: 'Product Manager',
+      avatarUrl: 'https://i.pravatar.cc/150?img=9',
+      rating: 5,
+      comment: 'Sangat worth it! Harga yang terjangkau tapi kualitas kontennya tidak kalah dengan platform internasional. Highly recommended!',
+      date: '20 April 2026',
+    },
+    {
+      id: '5',
+      name: 'Rizky Pratama',
+      role: 'Mobile Developer',
+      avatarUrl: 'https://i.pravatar.cc/150?img=7',
+      rating: 4,
+      comment: 'Kursus Flutter-nya sangat komprehensif. Dari dasar hingga deploy ke Play Store semua dibahas dengan jelas dan praktis.',
+      date: '15 April 2026',
+    },
+    {
+      id: '6',
+      name: 'Maya Putri',
+      role: 'Data Analyst',
+      avatarUrl: 'https://i.pravatar.cc/150?img=11',
+      rating: 5,
+      comment: 'Materi data science-nya sangat mendalam. Proyek-proyek yang diberikan benar-benar membantu saya membangun portfolio yang kuat.',
+      date: '10 April 2026',
+    },
+    {
+      id: '7',
+      name: 'Dimas Arya',
+      role: 'Fullstack Developer',
+      avatarUrl: 'https://i.pravatar.cc/150?img=13',
+      rating: 5,
+      comment: 'Belajar Next.js di sini sangat menyenangkan. Penjelasannya step-by-step dan ada sesi live coding yang sangat membantu.',
+      date: '5 April 2026',
+    },
+    {
+      id: '8',
+      name: 'Nadia Fitriani',
+      role: 'Digital Marketer',
+      avatarUrl: 'https://i.pravatar.cc/150?img=16',
+      rating: 4,
+      comment: 'Kursus digital marketing-nya sangat praktis. Langsung bisa diterapkan ke bisnis saya dan hasilnya sudah terasa dalam 2 bulan.',
+      date: '1 April 2026',
+    },
+  ];
+
   return (
     <>
       <main className="flex flex-col justify-between h-screen w-full">
@@ -201,7 +280,6 @@ export default function Home() {
               Trending Products
             </h1>
 
-            {/* ✅ overflow-x-clip agar vertikal tidak terpotong, pr agar item berikutnya keliatan */}
             <div className="overflow-x-clip w-full">
               <Swipeable
                 onSwipeLeft={next}
@@ -220,9 +298,108 @@ export default function Home() {
                   {courses.map((course) => (
                     <div
                       key={course.id}
-                      className="shrink-0 w-[85%] sm:w-[45%] lg:w-[23%] px-2 py-10"
+                      className="shrink-0 w-[85%] sm:w-[45%] md:w-[27%] lg:w-[23%] px-2 py-10"
                     >
                       <CardProduct {...course} onClick={() => { }} />
+                    </div>
+                  ))}
+                </div>
+              </Swipeable>
+            </div>
+          </div>
+
+          <div className="flex flex-col w-full justify-start items-start">
+            <h1 className="font-semibold text-3xl capitalize">
+              Products
+            </h1>
+
+            <div className="overflow-x-clip w-full">
+              <Swipeable
+                onSwipeLeft={next}
+                onSwipeRight={prev}
+                threshold={50}
+                showNavigation={true}
+                disablePrev={currentIndex === 0}
+                disableNext={currentIndex >= courses.length - itemsPerView}
+                navButtonClassName={"bg-linear-to-r from-linear-to-r from-[#148f59] via-[#0b8e4f] to-[#086539] text-white"}
+              >
+                <div
+                  ref={trackRef}
+                  className="flex transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] will-change-transform"
+                  style={{ transform: `translateX(-${offset}px)` }}
+                >
+                  {courses.map((course) => (
+                    <div
+                      key={course.id}
+                      className="shrink-0 w-[85%] sm:w-[45%] md:w-[27%] lg:w-[23%] px-2 py-10"
+                    >
+                      <CardProduct {...course} onClick={() => { }} />
+                    </div>
+                  ))}
+                </div>
+              </Swipeable>
+            </div>
+          </div>
+
+          <div className="bg-black w-full rounded-2xl p-10">
+            <div className="flex flex-row justify-between items-center">
+              <div className="w-1/2 text-white">
+                <h1 className="text-3xl font-semibold">Reimagine your career in the AI era</h1>
+                <p className="mt-2 text-neutral-300 text-wrap">Future-proof your skills with Personal Plan. Get access to a variety of fresh content from real-world experts.</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-7 mt-4">
+                  <div className="flex justify-start items-start gap-2">
+                    <Check className="w-6 h-6" />
+                    <p className="text-base">AI-powered learning paths tailored to your goals</p>
+                  </div>
+                  <div className="flex justify-start items-start gap-2">
+                    <Check className="w-6 h-6" />
+                    <p className="text-base">Prep for a certification</p>
+                  </div>
+                  <div className="flex justify-start items-start gap-2">
+                    <Check className="w-6 h-6" />
+                    <p className="text-base">Practice with AI coaching</p>
+                  </div>
+                  <div className="flex justify-start items-start gap-2">
+                    <Check className="w-6 h-6" />
+                    <p className="text-base">Advance your career</p>
+                  </div>
+                </div>
+                <Button className="bg-white text-black mt-10 rounded-lg py-6 px-10 font-semibold cursor-pointer hover:bg-white/80 transition-colors">
+                  Get started with Personal Plan
+                </Button>
+              </div>
+              <div className="w-1/2 flex justify-center">
+                <Image className="w-full h-full object-fill" src={"https://frontends.udemycdn.com/staticx/udemy/images/ai-career-banner/ai-career@1x.webp"} alt="image remaign your carreer" width={600} height={600} />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col w-full justify-start items-start">
+            <h1 className="font-semibold text-3xl capitalize">
+              Testimonies
+            </h1>
+
+            <div className="overflow-x-clip w-full">
+              <Swipeable
+                onSwipeLeft={next}
+                onSwipeRight={prev}
+                threshold={50}
+                showNavigation={true}
+                disablePrev={currentIndex === 0}
+                disableNext={currentIndex >= courses.length - itemsPerView}
+                navButtonClassName={"bg-linear-to-r from-linear-to-r from-[#148f59] via-[#0b8e4f] to-[#086539] text-white"}
+              >
+                <div
+                  ref={trackRef}
+                  className="flex transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] will-change-transform"
+                  style={{ transform: `translateX(-${offset}px)` }}
+                >
+                  {testimonies.map((t) => (
+                    <div
+                      key={t.id}
+                      className="shrink-0 w-[85%] sm:w-[45%] md:w-[27%] lg:w-[27%] px-2 py-10"
+                    >
+                      <CardTestimony {...t} />
                     </div>
                   ))}
                 </div>

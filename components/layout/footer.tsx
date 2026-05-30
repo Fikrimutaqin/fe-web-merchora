@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <div className="bg-white text-gray-600">
+        <div className="bg-white text-gray-600 border-t border-gray-200">
             <div className="max-full lg:max-w-7xl mx-auto items-start justify-between gap-6 px-6 py-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* Logo */}
@@ -43,7 +43,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="border-t border-gray-300 mt-8 pt-8">
+                <div className="mt-8 pt-8">
                     <div className="flex flex-col items-center justify-between lg:flex-row">
                         <p className="">&copy; {new Date().getFullYear()} Merchora. All rights reserved.</p>
                         <div className="flex items-center gap-4">

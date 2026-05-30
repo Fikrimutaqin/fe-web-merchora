@@ -71,7 +71,7 @@ export default function CardProduct({
                 </p>
 
                 {/* Rating and Bestseller Badge */}
-                <div className="flex items-center gap-2 pt-2">
+                <div className="flex items-center gap-2 pt-2 flex-wrap">
                     {isBestseller && (
                         <span className="px-2 py-1 bg-linear-to-r from-linear-to-r from-[#148f59] via-[#0b8e4f] to-[#086539] text-white text-xs font-medium rounded-lg">
                             Best Seller
