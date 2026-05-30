@@ -308,39 +308,6 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex flex-col w-full justify-start items-start">
-            <h1 className="font-semibold text-3xl capitalize">
-              Products
-            </h1>
-
-            <div className="overflow-x-clip w-full">
-              <Swipeable
-                onSwipeLeft={next}
-                onSwipeRight={prev}
-                threshold={50}
-                showNavigation={true}
-                disablePrev={currentIndex === 0}
-                disableNext={currentIndex >= courses.length - itemsPerView}
-                navButtonClassName={"bg-linear-to-r from-linear-to-r from-[#148f59] via-[#0b8e4f] to-[#086539] text-white"}
-              >
-                <div
-                  ref={trackRef}
-                  className="flex transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] will-change-transform"
-                  style={{ transform: `translateX(-${offset}px)` }}
-                >
-                  {courses.map((course) => (
-                    <div
-                      key={course.id}
-                      className="shrink-0 w-[85%] sm:w-[45%] md:w-[27%] lg:w-[23%] px-2 py-10"
-                    >
-                      <CardProduct {...course} onClick={() => { }} />
-                    </div>
-                  ))}
-                </div>
-              </Swipeable>
-            </div>
-          </div>
-
           <div className="bg-black w-full rounded-2xl p-10">
             <div className="flex flex-row justify-between items-center">
               <div className="w-1/2 text-white">
